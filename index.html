@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a1018">
+<title>Signal Room — Browser SOC Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">S</span><span><b>SIGNAL ROOM</b><small>TRAINING CONSOLE</small></span></div>
+    <div class="workspace-label">WORKSPACE</div>
+    <div class="workspace"><span class="pulse-dot"></span> Home Lab <span class="chevron">⌄</span></div>
+    <nav aria-label="Main navigation">
+      <button class="nav-item active" data-view="overview"><span>◫</span> Overview</button>
+      <button class="nav-item" data-view="alerts"><span>◉</span> Alert queue <i id="nav-count">04</i></button>
+      <button class="nav-item" data-view="events"><span>▤</span> Event explorer</button>
+      <button class="nav-item" data-view="accounts"><span>♙</span> Example accounts</button>
+      <button class="nav-item" data-view="playbook"><span>⊞</span> Learning path</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="safe-label"><span>●</span> LOCAL SQLITE SIMULATION</div><p>Fictional training data stays on this Mac.</p><div class="profile"><div class="avatar">A</div><span><b>Analyst</b><small>Training account</small></span><span class="dots">···</span></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><div class="crumb">Home Lab <span>/</span> <b id="crumb-current">Overview</b></div><div class="top-meta"><span class="live-indicator"><i></i> SIMULATION LIVE</span><span class="date-label">LOCAL WORKSPACE</span></div></header>
+    <section class="view active" id="view-overview">
+      <div class="page-heading"><div><div class="eyebrow">MONDAY, 09:41:18 UTC <span class="tag">TRAINING MODE</span></div><h1>Good morning, analyst.</h1><p class="subheading">Your simulated environment is ready. Start with the alerts that need a closer look.</p></div><button class="btn btn-primary" id="start-investigation">↗ &nbsp;Open alert queue</button></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-label">OPEN ALERTS <span>↗</span></div><div class="stat-value" id="stat-open">04</div><div class="stat-foot"><span class="orange-dot"></span> 2 need review</div><div class="sparkline orange">▁▂▂▃▂▄▃▅▄▇</div></article>
+        <article class="stat-card"><div class="stat-label">EVENTS TODAY <span>↗</span></div><div class="stat-value">1,284</div><div class="stat-foot"><span class="green-text">↑ 12%</span> from baseline</div><div class="sparkline green">▂▃▂▄▃▅▃▄▆▅</div></article>
+        <article class="stat-card"><div class="stat-label">MEAN TRIAGE TIME <span>↗</span></div><div class="stat-value">06<span class="unit">m</span> 24<span class="unit">s</span></div><div class="stat-foot"><span class="green-text">↓ 18%</span> this session</div><div class="sparkline blue">▆▅▄▅▃▄▂▃▂▁</div></article>
+        <article class="stat-card"><div class="stat-label">ENDPOINTS ONLINE <span>↗</span></div><div class="stat-value">08<span class="unit">/08</span></div><div class="stat-foot"><span class="green-dot"></span> All reporting normally</div><div class="sparkline violet">▆▆▆▆▆▆▆▆▆▆</div></article>
+      </div>
+      <div class="content-grid">
+        <article class="panel alert-panel"><div class="panel-head"><div><h2>Needs attention</h2><p>Prioritized signals from your simulated environment</p></div><button class="text-button" data-go="alerts">View all alerts&nbsp; →</button></div><div class="alert-list" id="priority-alerts"></div></article>
+        <article class="panel activity-panel"><div class="panel-head"><div><h2>Signal activity</h2><p>Events across the last 24 hours</p></div><button class="icon-button" aria-label="More activity options">···</button></div><div class="activity-summary"><div><b>1,284</b><small>events ingested</small></div><div><b class="green-text">99.2%</b><small>normal baseline</small></div></div><div class="chart-wrap"><div class="chart-y"><span>120</span><span>80</span><span>40</span><span>0</span></div><div class="chart"><div class="gridline one"></div><div class="gridline two"></div><div class="gridline three"></div><svg viewBox="0 0 520 150" preserveAspectRatio="none" aria-label="Illustrative event activity graph"><defs><linearGradient id="fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#3bd6b1" stop-opacity=".22"/><stop offset="1" stop-color="#3bd6b1" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0 112 C22 105 25 88 48 94 S77 112 96 96 S122 84 145 97 S172 106 193 78 S218 96 242 87 S272 55 291 69 S320 91 340 76 S370 86 389 55 S420 68 437 47 S460 70 480 42 S504 57 520 25 L520 150 L0 150Z"/><path class="line" d="M0 112 C22 105 25 88 48 94 S77 112 96 96 S122 84 145 97 S172 106 193 78 S218 96 242 87 S272 55 291 69 S320 91 340 76 S370 86 389 55 S420 68 437 47 S460 70 480 42 S504 57 520 25"/></svg><div class="chart-x"><span>00:00</span><span>04:00</span><span>08:00</span><span>12:00</span><span>16:00</span><span>20:00</span><span>Now</span></div></div></div><div class="chart-legend"><span><i class="legend-dot teal"></i>Events</span><span><i class="legend-dot gray"></i>Baseline</span></div></article>
+      </div>
+      <article class="panel scenario-strip"><div class="scenario-icon">✦</div><div><div class="eyebrow">GUIDED SCENARIO · 8 MIN</div><h2>Unusual sign-in, familiar device</h2><p>Review an identity alert, build a timeline, and decide what you would do next.</p></div><button id="scenario-start" class="btn btn-outline">Start scenario&nbsp; →</button></article>
+    </section>
+    <section class="view" id="view-alerts">
+      <div class="page-heading compact"><div><div class="eyebrow">DETECTION & RESPONSE</div><h1>Alert queue</h1><p class="subheading">Review each signal, add context, and record a training disposition.</p></div><div class="queue-tools"><label class="search-box"><span>⌕</span><input id="alert-search" type="search" placeholder="Search alerts" aria-label="Search alerts"></label><select id="severity-filter" aria-label="Filter by severity"><option value="all">All severities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></div></div>
+      <div class="queue-summary"><span><b id="queue-total">4</b> simulated alerts</span><span class="queue-sep">·</span><span>Dataset: <b>Home Lab / Week 01</b></span><span class="queue-sep">·</span><button class="text-button" id="reset-lab">Reset training data</button></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>ALERT</th><th>SEVERITY</th><th>SOURCE</th><th>DETECTED</th><th>STATUS</th><th></th></tr></thead><tbody id="alert-rows"></tbody></table></div></div>
+      <div class="panel empty-state" id="no-results" hidden><div class="empty-icon">⌕</div><h2>No matching alerts</h2><p>Try a different search or severity filter.</p></div>
+    </section>
+    <section class="view" id="view-events">
+      <div class="page-heading compact"><div><div class="eyebrow">RAW TELEMETRY</div><h1>Event explorer</h1><p class="subheading">Search a small, fictional event set to practice reading signals in context.</p></div><label class="search-box wide"><span>⌕</span><input id="event-search" type="search" placeholder="Search event, host, user, or IP" aria-label="Search events"></label></div>
+      <div class="query-hint"><span>TIP</span> Try <button data-query="authentication">authentication</button>, <button data-query="192.0.2.55">192.0.2.55</button>, or <button data-query="example.invalid">example.invalid</button></div>
+      <article class="panel event-panel"><div class="event-toolbar"><span><i class="green-dot"></i> LOCAL SAMPLE DATA</span><span id="event-count">12 events</span></div><div class="event-list" id="event-list"></div></article>
+    </section>
+    <section class="view" id="view-accounts">
+      <div class="page-heading compact"><div><div class="eyebrow">FICTIONAL IDENTITIES · TRAINING DATA</div><h1>Example accounts</h1><p class="subheading">Sample identities connect alerts and events. No accounts or credentials are real.</p></div><label class="search-box wide"><span>⌕</span><input id="account-search" type="search" placeholder="Search account, role, or device" aria-label="Search example accounts"></label></div>
+      <div class="account-banner"><span class="account-banner-icon">◎</span><div><b>Demo directory</b><p>Every identity below is invented for this lab. Select “View events” to filter the local sample telemetry, or open a linked alert for its investigation context.</p></div><span class="demo-tag">LOCAL ONLY</span></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>ACCOUNT</th><th>TYPE / ROLE</th><th>DEVICE</th><th>TRAINING SIGNAL</th><th>LINKED ALERT</th><th></th></tr></thead><tbody id="account-rows"></tbody></table></div></div>
+      <div class="panel empty-state" id="account-no-results" hidden><div class="empty-icon">⌕</div><h2>No example accounts match</h2><p>Try a different name, role, or device.</p></div>
+    </section>
+    <section class="view" id="view-playbook">
+      <div class="page-heading compact"><div><div class="eyebrow">BUILD YOUR ANALYST HABITS</div><h1>Learning path</h1><p class="subheading">Short, safe exercises that teach investigation basics without touching real systems.</p></div><div class="progress-pill"><span class="progress-ring">1/3</span><span><b>Your progress</b><small id="progress-caption">One exercise started</small></span></div></div>
+      <div class="learning-grid">
+        <article class="panel lesson-card done"><div class="lesson-top"><span class="lesson-number">01</span><span class="lesson-state">START HERE</span></div><div class="lesson-art art-one"><span>◉</span><i></i><b></b></div><div class="eyebrow">FOUNDATIONS · 5 MIN</div><h2>Read an alert</h2><p>Separate an alert's facts from its interpretation. Identify the account, device, time, and source.</p><button class="text-button lesson-action" data-lesson="alert">Open lesson&nbsp; →</button></article>
+        <article class="panel lesson-card"><div class="lesson-top"><span class="lesson-number">02</span><span class="lesson-state muted">EXERCISE</span></div><div class="lesson-art art-two"><span>⌁</span><i></i><b></b></div><div class="eyebrow">INVESTIGATION · 8 MIN</div><h2>Build a timeline</h2><p>Connect related sign-in events and compare the activity against a normal baseline.</p><button class="text-button lesson-action" data-lesson="timeline">Open lesson&nbsp; →</button></article>
+        <article class="panel lesson-card"><div class="lesson-top"><span class="lesson-number">03</span><span class="lesson-state muted">EXERCISE</span></div><div class="lesson-art art-three"><span>✓</span><i></i><b></b></div><div class="eyebrow">DECISION MAKING · 6 MIN</div><h2>Choose a disposition</h2><p>Record what you know, what is missing, and the next safe step for the response team.</p><button class="text-button lesson-action" data-lesson="disposition">Open lesson&nbsp; →</button></article>
+      </div>
+      <div class="safety-note"><span>ⓘ</span><p><b>Designed for practice.</b> This project uses a fictional dataset in your browser. It does not scan devices, send network traffic, or connect to real accounts.</p></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="alert-dialog" class="detail-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div id="dialog-content"></div></dialog>
+<dialog id="lesson-dialog" class="detail-dialog lesson-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close">×</button></form><div id="lesson-content"></div></dialog>
+<script src="app.js"></script>
+</body>
+</html>
