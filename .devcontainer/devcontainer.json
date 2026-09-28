@@ -1,0 +1,12 @@
+{
+  "name": "Signal Room SOC Lab",
+  "forwardPorts": [
+    8123
+  ],
+  "portsAttributes": {
+    "8123": {
+      "label": "Signal Room SOC Lab",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
