@@ -13,7 +13,7 @@ from urllib.parse import parse_qs, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parent
 DB_PATH = Path(os.environ.get("SOC_LAB_DB", ROOT / "data" / "signal-room.sqlite3")).expanduser().resolve()
-HOST = "127.0.0.1"
+HOST = "0.0.0.0" if os.environ.get("CODESPACES") == "true" else "127.0.0.1"
 PORT = int(os.environ.get("PORT", "8123"))
 
 ACCOUNTS = [
