@@ -17,6 +17,7 @@ The lab requires Python 3.9+. SQLite is included with Python; no packages, Docke
 2. Run `./run.sh` (or `python3 server.py`).
 3. Open <http://127.0.0.1:8123> in your browser.
 4. Press Control-C in Terminal to stop the app.
+5. If it stops again, open the Codespace terminal and run: /home/codespace/.python/current/bin/python3 server.py
 
 ## SQLite database
 
